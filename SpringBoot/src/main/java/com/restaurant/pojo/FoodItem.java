@@ -18,7 +18,7 @@ public class FoodItem {
     private String name;
     private String description;
     private double actualPrice;
-    private int offer;
+    private double offer;
     private String imagePath;
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -28,7 +28,9 @@ public class FoodItem {
     private boolean enabled;
     
     public double getDiscountedPrice() {
-    	return this.actualPrice*(1-this.offer/100);
+    	double discPrice = Math.round(this.actualPrice*(1-this.offer/100) * 100);
+    	discPrice = discPrice/100;
+    	return (discPrice);
     }
     
     
